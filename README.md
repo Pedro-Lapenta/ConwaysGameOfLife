@@ -41,6 +41,7 @@ You’ll be prompted to input the **height** and **width** of the grid. Afterwar
 
 > ⚠️ The current `playGame()` method is set to run infinitely due to `for (int i = 0; i != repetitions; i--)`.  
 > Update this condition for finite executions.
+> If you want to stop running the game type "ctrl + c"
 
 ### Example Fix
 

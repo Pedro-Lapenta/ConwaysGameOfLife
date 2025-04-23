@@ -119,6 +119,8 @@ public class GridState {
 
     public void playGame(int repetitions) {
         int[][] grid = setState();
+        int[][] tempGrid = grid;
+        int loopCount = 0;
 
         System.out.print("\033[H"); // Move cursor to top-left
         System.out.print("Conway's Game of Life: ");

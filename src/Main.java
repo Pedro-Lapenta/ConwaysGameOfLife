@@ -14,16 +14,19 @@ public class Main {
         }
 
         Scanner sc = new Scanner(System.in);
-
-        System.out.println("Height: ");
-        int height = sc.nextInt();
-        System.out.println("Width: ");
-        int width = sc.nextInt();
-        GridState gridState = new GridState(height, width);
+        
+        System.out.println("TIP: Press ctrl + c to stop the game");
+        // System.out.println("Height: ");
+        // int height = sc.nextInt();
+        // System.out.println("Width: ");
+        // int width = sc.nextInt();
+        // /GridState gridState = new GridState(height, width);
+        SettedState settedState = new SettedState("SettedStates/GosperGliderGun.txt");
 
         // RUN THE GAME
-        gridState.playGame(1); // the loop will never reach a positive number
-
+        // /gridState.playGame(1); // the loop will never reach a positive number
+        
+        settedState.playGame(1);
 
         sc.close();
     }
