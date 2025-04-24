@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-    // Set the standard output to use UTF-8 encoding to properly display special characters
+        // Set the standard output to use UTF-8 encoding to properly display special characters
         try {
             System.setOut(new java.io.PrintStream(System.out, true, "UTF-8"));
         } catch (java.io.UnsupportedEncodingException e) {
@@ -14,19 +14,71 @@ public class Main {
         }
 
         Scanner sc = new Scanner(System.in);
-        
-        System.out.println("TIP: Press ctrl + c to stop the game");
-        // System.out.println("Height: ");
-        // int height = sc.nextInt();
-        // System.out.println("Width: ");
-        // int width = sc.nextInt();
-        // /GridState gridState = new GridState(height, width);
-        SettedState settedState = new SettedState("SettedStates/GosperGliderGun.txt");
+        boolean exit = false;
 
-        // RUN THE GAME
-        // /gridState.playGame(1); // the loop will never reach a positive number
-        
-        settedState.playGame(1);
+        while (!exit) {
+            System.out.println("=============================");
+            System.out.println("=== Conway's Game of Life ===");
+            System.out.println("=============================");
+            
+            System.out.println("\u001B[32mTIP: Press 'ctrl + c' to exit the program and clear (or cls) to clear the terminal\u001B[0m");
+            System.out.println();
+
+            System.out.println("1. Run game with random grid");
+            System.out.println("2. Run game with predefined state");
+            System.out.println("3. Run unit tests");
+            System.out.println("4. Exit");
+            System.out.print("Choose an option: ");
+
+            int choice = sc.nextInt();
+            sc.nextLine(); // Consume newline
+
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter grid height: ");
+                    int height = sc.nextInt();
+                    System.out.print("Enter grid width: ");
+                    int width = sc.nextInt();
+                    System.out.println("Enter number of repetitions (negative int to run indefinitely): ");
+                    int repetitions = sc.nextInt();
+
+                    GridState gridState = new GridState(height, width);
+                    gridState.playGame(repetitions);
+                    break;
+
+                case 2:
+                    System.out.println("Enter the file name for the predefined state (type 'options' to see pre-loaded options): ");
+
+                    if (sc.nextLine().equals("options")){
+                        System.out.println("GosperGliderGun");
+                        System.out.println("Toad");
+                    }
+
+                    System.out.println("Enter the file name for the predefined state (type 'option' to see pre-loaded options): ");
+                    String fileName = sc.nextLine();
+
+                    String filePath = "SettedStates/" + fileName + ".txt";
+                    System.out.println("Enter number of repetitions: (negative int to run indefinitely)");
+                    repetitions = sc.nextInt();
+
+                    SettedState settedState = new SettedState(filePath);
+                    settedState.playGame(repetitions);
+                    break;
+
+                case 3:
+                    UnitTesting unitTesting = new UnitTesting();
+                    unitTesting.unitTests();
+                    break;
+
+                case 4:
+                    exit = true;
+                    System.out.println("Exiting the program. Goodbye!");
+                    break;
+
+                default:
+                    System.out.println("Invalid option. Please try again.");
+            }
+        }
 
         sc.close();
     }

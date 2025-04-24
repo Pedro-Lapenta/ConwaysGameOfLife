@@ -13,10 +13,6 @@ public class SettedState extends GridState {
         initializeDimensions(filePath);
     }
 
-    // public void setFilePath(String filePath){
-    //     this.filePath = filePath;
-    // }
-
     private void initializeDimensions(String filePath) {
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;

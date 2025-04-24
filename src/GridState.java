@@ -96,22 +96,14 @@ public class GridState {
             for (int j = 0; j < width; j++){
                 int numOfNeighbors = countNeighbors(i, j, grid);
                 
-                //Any live cell with 0 or 1 live neighbors becomes dead, because of underpopulation
-                if(grid[i][j] == 1 && numOfNeighbors < 2){
-                    newGrid[i][j] = 0;
+                if (grid[i][j] == 1) {
+                    // Live cell: survives with 2 or 3 neighbors
+                    newGrid[i][j] = (numOfNeighbors == 2 || numOfNeighbors == 3) ? 1 : 0;
+                } else {
+                    // Dead cell: becomes alive with exactly 3 neighbors
+                    newGrid[i][j] = (numOfNeighbors == 3) ? 1 : 0;
                 }
-                //Any live cell with 2 or 3 live neighbors stays alive, because its neighborhood is just right
-                if(grid[i][j] == 1 && numOfNeighbors == 2 || numOfNeighbors == 3){
-                    newGrid[i][j] = 1;
-                }
-                //Any live cell with more than 3 live neighbors becomes dead, because of overpopulation
-                if(grid[i][j] == 1 && numOfNeighbors > 3){
-                    newGrid[i][j] = 0;
-                }
-                //Any dead cell with exactly 3 live neighbors becomes alive, by reproduction
-                if(grid[i][j] == 0 && numOfNeighbors == 3){
-                    newGrid[i][j] = 1;
-                }
+                
             }
         }
         return newGrid;
@@ -119,13 +111,15 @@ public class GridState {
 
     public void playGame(int repetitions) {
         int[][] grid = setState();
-        int[][] tempGrid = grid;
-        int loopCount = 0;
+
 
         System.out.print("\033[H"); // Move cursor to top-left
         System.out.print("Conway's Game of Life: ");
     
-        for (int i = 0; i != repetitions; i--) {
+        for (int i = 0; i != repetitions; i++) {
+            System.out.print("\033[H\033[2J");
+            System.out.flush();
+
             System.out.print("\033[H"); // Move cursor to top-left
 
             System.out.println();
@@ -145,6 +139,4 @@ public class GridState {
         }
     }
     
-
-    //TODO -> CREATE UNIT TESTS
 }
