@@ -4,6 +4,8 @@ This is a simple Java implementation of [Conway's Game of Life](https://en.wikip
 
 ## ⚠️ Unicode Display Warning
 
+If Unicode characters are not displaying correctly, try the following:
+
 ### On Windows:
 1. Open **Settings** > **Time & Language** > **Language & Region**.
 2. Click **Administrative Language settings**.
