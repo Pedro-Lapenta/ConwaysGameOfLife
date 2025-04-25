@@ -2,6 +2,21 @@
 
 This is a simple Java implementation of [Conway's Game of Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life), a cellular automaton devised by mathematician John Conway. This project simulates the evolution of a grid of cells following a set of rules based on the state of neighboring cells.
 
+## ⚠️ Unicode Display Warning
+
+If symbols are not displaying correctly in your terminal, it may be due to the default character encoding.
+
+To fix this, run the following command in your terminal before executing the program:
+
+```
+chcp 65001
+```
+
+This sets the terminal's code page to UTF-8, which supports Unicode characters properly.
+
+💡 Note: You may need to do this every time you open a new terminal window.
+
+
 ## 📋 Features
 
 - Randomized, setted or dead-initialized grid  
