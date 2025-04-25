@@ -47,18 +47,23 @@ public class Main {
                     break;
 
                 case 2:
-                    System.out.println("Enter the file name for the predefined state (type 'options' to see pre-loaded options): ");
 
-                    if (sc.nextLine().equals("options")){
-                        System.out.println("GosperGliderGun");
-                        System.out.println("Toad");
-                    }
+                    System.out.println("Default Pre-loaded Options: ");
+                    System.out.println("GosperGliderGun");
+                    System.out.println("AgainstTheGrain");
+                    System.out.println("WithTheGrain");
+                    System.out.println("c6Spaceship");
+                    System.out.println("CarnivalShuttle");
+                    System.out.println("DiamondRing");
+                    System.out.println("Toad");
+                    System.out.println("DinnerTable");
+                    System.out.println("TimCoeSpaceFiller");
 
-                    System.out.println("Enter the file name for the predefined state (type 'option' to see pre-loaded options): ");
+                    System.out.println("Enter the file name for the predefined state: ");
                     String fileName = sc.nextLine();
 
                     String filePath = "SettedStates/" + fileName + ".txt";
-                    System.out.println("Enter number of repetitions: (negative int to run indefinitely)");
+                    System.out.println("Enter number of repetitions (negative int to run indefinitely): ");
                     repetitions = sc.nextInt();
 
                     SettedState settedState = new SettedState(filePath);
