@@ -4,31 +4,49 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-
-        // Set the standard output to use UTF-8 encoding to properly display special characters
         try {
             System.setOut(new java.io.PrintStream(System.out, true, "UTF-8"));
         } catch (java.io.UnsupportedEncodingException e) {
             System.err.println("UTF-8 encoding is not supported on this system.");
-            return; // Exit the program if UTF-8 is not supported
+            return;
         }
 
         Scanner sc = new Scanner(System.in);
         boolean exit = false;
 
         while (!exit) {
-            System.out.println("=============================");
-            System.out.println("=== Conway's Game of Life ===");
-            System.out.println("=============================");
-            
-            System.out.println("\u001B[32mTIP: Press 'ctrl + c' to exit the program and clear (or cls) to clear the terminal\u001B[0m");
+            // Clear screen (works on Unix/Win)
+            System.out.print("\033[H\033[2J");
+            System.out.flush();
+
+            // Header with ASCII art
+            System.out.println("\u001B[36m" + // Cyan color
+                "_________                                               ________                        ________   _____  .____    .__  _____       \n" +
+                "\\_   ___ \\  ____   ______  _  _______  ___.__. ______  /  _____/_____    _____   ____   \\_____  \\_/ ____\\ |    |   |__|/ ____\\____  \n" +
+                "/    \\  \\/ /  _ \\ /    \\ \\/ \\/ /\\__  \\<   |  |/  ___/ /   \\  ___\\__  \\  /     \\_/ __ \\   /   |   \\   __\\  |    |   |  \\   __\\/ __ \\ \n" +
+                "\\     \\___(  <_> )   |  \\     /  / __ \\\\___  |\\___ \\  \\    \\_\\  \\/ __ \\|  Y Y  \\  ___/  /    |    \\  |    |    |___|  ||  | \\  ___/ \n" +
+                " \\______  /\\____/|___|  /\\/\\_/  (____  / ____/____  >  \\______  (____  /__|_|  /\\___  > \\_______  /__|    |_______ \\__||__|  \\___  >\n" +
+                "        \\/            \\/             \\/\\/         \\/          \\/     \\/      \\/     \\/          \\/                \\/             \\/ \n" +
+                "\u001B[0m");
+
+            System.out.println("\u001B[33mTIP: Press 'ctrl + c' to exit | Enter 'clear' to wipe the terminal\u001B[0m\n");
+            System.out.println();
+            System.out.println("\u001B[33mIf symbols are not displaying correctly in your terminal, it may be due to the default character encoding.\u001B[0m");
+            System.out.println("\u001B[33mTo fix this, run the following command in your terminal before executing the program:\u001B[0m chcp 65001\n");
+            System.out.println();
             System.out.println();
 
-            System.out.println("1. Run game with random grid");
-            System.out.println("2. Run game with predefined state");
-            System.out.println("3. Run unit tests");
-            System.out.println("4. Exit");
-            System.out.print("Choose an option: ");
+            // Menu options with ASCII icons
+            System.out.println("\u001B[32m1. 🎲 Random Grid\u001B[0m");
+
+
+            System.out.println("\u001B[32m2. 🏗️ Predefined State\u001B[0m");
+
+            System.out.println("\u001B[32m3. 🧪 Unit Tests\u001B[0m");
+
+            System.out.println("\u001B[32m4. 🚪 Exit\u001B[0m");
+
+            System.out.print("\n\u001B[35mChoose an option: \u001B[0m");
 
             int choice = sc.nextInt();
             sc.nextLine(); // Consume newline
@@ -39,7 +57,7 @@ public class Main {
                     int height = sc.nextInt();
                     System.out.print("Enter grid width: ");
                     int width = sc.nextInt();
-                    System.out.println("Enter number of repetitions (negative int to run indefinitely): ");
+                    System.out.print("Enter repetitions (negative for infinite): ");
                     int repetitions = sc.nextInt();
 
                     GridState gridState = new GridState(height, width);
@@ -47,23 +65,17 @@ public class Main {
                     break;
 
                 case 2:
+                    System.out.println("\u001B[33mAvailable Patterns:\u001B[0m");
+                    System.out.println("  * GosperGliderGun   * AgainstTheGrain");
+                    System.out.println("  * WithTheGrain      * c6Spaceship");
+                    System.out.println("  * CarnivalShuttle   * DiamondRing");
+                    System.out.println("  * Toad              * DinnerTable");
+                    System.out.println("  * TimCoeSpaceFiller");
 
-                    System.out.println("Default Pre-loaded Options: ");
-                    System.out.println("GosperGliderGun");
-                    System.out.println("AgainstTheGrain");
-                    System.out.println("WithTheGrain");
-                    System.out.println("c6Spaceship");
-                    System.out.println("CarnivalShuttle");
-                    System.out.println("DiamondRing");
-                    System.out.println("Toad");
-                    System.out.println("DinnerTable");
-                    System.out.println("TimCoeSpaceFiller");
-
-                    System.out.println("Enter the file name for the predefined state: ");
+                    System.out.print("\nEnter pattern name: ");
                     String fileName = sc.nextLine();
-
                     String filePath = "SettedStates/" + fileName + ".txt";
-                    System.out.println("Enter number of repetitions (negative int to run indefinitely): ");
+                    System.out.print("Enter repetitions: ");
                     repetitions = sc.nextInt();
 
                     SettedState settedState = new SettedState(filePath);
@@ -77,14 +89,17 @@ public class Main {
 
                 case 4:
                     exit = true;
-                    System.out.println("Exiting the program. Goodbye!");
+                    System.out.println("\u001B[31m" + 
+                        "  ╔════════════╗\n" +
+                        "  ║ See you!  ║\n" +
+                        "  ╚════════════╝\n" + 
+                        "\u001B[0m");
                     break;
 
                 default:
-                    System.out.println("Invalid option. Please try again.");
+                    System.out.println("\u001B[31mInvalid option!\u001B[0m");
             }
         }
-
         sc.close();
     }
 }
