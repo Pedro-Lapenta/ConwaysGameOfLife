@@ -4,9 +4,14 @@ This is a simple Java implementation of [Conway's Game of Life](https://en.wikip
 
 ## ⚠️ Unicode Display Warning
 
-If symbols are not displaying correctly in your terminal, it may be due to the default character encoding.
+### On Windows:
+1. Open **Settings** > **Time & Language** > **Language & Region**.
+2. Click **Administrative Language settings**.
+3. Under **Language for non-Unicode programs**, click **Change system locale...**.
+4. Enable the option: **"Use Unicode UTF-8 for worldwide language support"**.
+5. Restart your computer for the changes to take effect.
 
-To fix this, run the following command in your terminal before executing the program:
+If this still didn't fix the problem, try running this command in your terminal before executing your program:
 
 ```
 chcp 65001
