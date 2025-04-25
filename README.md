@@ -4,7 +4,7 @@ This is a simple Java implementation of [Conway's Game of Life](https://en.wikip
 
 ## 📋 Features
 
-- Randomized or dead-initialized grid  
+- Randomized, setted or dead-initialized grid  
 - Clear terminal-based animation using UTF-8 characters  
 - Configurable grid dimensions  
 
@@ -19,9 +19,32 @@ This is a simple Java implementation of [Conway's Game of Life](https://en.wikip
 
 ```
 src/
-├── GridState.java     // Core class containing logic and grid manipulation
-├── DeadState.java     // Subclass with all cells initialized to dead
-└── Main.java          // Entry point for user interaction and game execution
+├── SettedStates/                      // Preset patterns for initializing the game
+│   ├── GosperGliderGun.txt            // Text file defining the Gosper Glider Gun pattern
+│   ├── Toad.txt                       // Text file defining the Toad oscillator pattern
+│   ├── ...
+│   └── (your_custom_pattern).txt      // You can add your own .txt files here
+│
+├── TestStates/                        // Test scenarios to validate game rules
+│   ├── Overpopulation.txt             // Tests for overpopulation rule
+│   ├── Reproduction.txt               // Tests for reproduction rule
+│   ├── Survival.txt                   // Tests for survival rule
+│   └── Underpopulation.txt            // Tests for underpopulation rule
+│
+├── GridState.java                     // Core class containing logic and grid manipulation
+├── GridState.class                    // Compiled version of GridState.java
+│
+├── DeadState.java                     // Subclass with all cells initialized to dead
+├── DeadState.class                    // Compiled version of DeadState.java
+│
+├── SettedState.java                   // Loads predefined states from files in SettedStates
+├── SettedState.class                  // Compiled version of SettedState.java
+│
+├── UnitTesting.java                   // Contains unit tests for validating the system
+├── UnitTesting.class                  // Compiled version of UnitTesting.java
+│
+├── Main.java                          // Entry point for user interaction and game execution
+└── Main.class                         // Compiled version of Main.java
 ```
 
 ## 🚀 How to Run
@@ -39,25 +62,6 @@ java Main.java
 
 You’ll be prompted to input the **height** and **width** of the grid. Afterward, the game will begin.
 
-> ⚠️ The current `playGame()` method is set to run infinitely due to `for (int i = 0; i != repetitions; i--)`.  
-> Update this condition for finite executions.
-> If you want to stop running the game type "ctrl + c"
-
-### Example Fix
-
-```java
-//GridState.java
-
-for (int i = 0; i < repetitions; i++) {
-    // your animation logic here
-}
-```
-
-```java
-//Main.java
-
-gridState.playGame(number of repetitions); //initially set to 1
-```
 
 ## 🧪 Sample Output
 
@@ -72,10 +76,19 @@ Conway's Game of Life:
 ........
 ```
 
-## ✏️ Customizing Initial State
+## ➕ Adding Custom Patterns
 
-You can extend `GridState` to create new initialization states.  
-An example is the `DeadState` class where all cells start as dead.
+You can add your own initial configurations for the game by simply placing .txt files into the SettedStates/ folder. These files will be read by the SettedState class and can be used as starting states for the simulation.
+
+Each .txt file should represent a grid using characters (e.g., 1 for alive, 0 for dead) where each line corresponds to a row in the grid. Example:
+
+```
+00100
+00100
+00100
+00000
+00000
+```
 
 ## 📜 License
 
