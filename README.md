@@ -28,7 +28,18 @@ This sets the terminal's code page to UTF-8, which supports Unicode characters p
 
 - Randomized, setted or dead-initialized grid  
 - Clear terminal-based animation using UTF-8 characters  
-- Configurable grid dimensions  
+- Configurable grid dimensions 
+
+## 🖼️ Examples
+
+Here are two examples showcasing the Game of Life in action:
+
+### Gosper Glider Gun
+![Gosper Glider Gun](gif/GosperGliderGun.gif)
+
+### Randomly Generated Grid
+![Random Grid](gif/RandomGrid.gif)
+
 
 ## 🧠 Game Rules
 
@@ -74,6 +85,12 @@ src/
 ### Requirements
 
 - Java 8 or later
+
+### Go to the /src folder
+
+```bash
+cd src
+```
 
 ### Compile and Run
 
