@@ -86,17 +86,11 @@ src/
 
 - Java 8 or later
 
-### Go to the /src folder
-
-```bash
-cd src
-```
-
 ### Compile and Run
 
 ```bash
-javac *.java
-java Main.java
+javac src/*.java
+java src.Main
 ```
 
 You’ll be prompted to input the **height** and **width** of the grid. Afterward, the game will begin.
