@@ -49,7 +49,7 @@ public class GridState {
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
                 if (grid[i][j] == 0){
-                    System.out.print(".");
+                    System.out.print(" ");
                 }
                 else {
                     System.out.print("■");

@@ -74,7 +74,7 @@ public class Main {
 
                     System.out.print("\nEnter pattern name: ");
                     String fileName = sc.nextLine();
-                    String filePath = "SettedStates/" + fileName + ".txt";
+                    String filePath = "src/SettedStates/" + fileName + ".txt";
                     System.out.print("Enter repetitions: ");
                     repetitions = sc.nextInt();
 
